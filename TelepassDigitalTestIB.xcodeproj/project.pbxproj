@@ -7,18 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B483EAEF273D02DC009F749F /* TelepassDigitalTestIBApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483EAEE273D02DC009F749F /* TelepassDigitalTestIBApp.swift */; };
-		B483EAF1273D02DC009F749F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483EAF0273D02DC009F749F /* ContentView.swift */; };
+		B483EAF1273D02DC009F749F /* PokemonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483EAF0273D02DC009F749F /* PokemonListView.swift */; };
 		B483EAF3273D02DC009F749F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B483EAF2273D02DC009F749F /* Assets.xcassets */; };
 		B483EAF6273D02DC009F749F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B483EAF5273D02DC009F749F /* Preview Assets.xcassets */; };
+		B483EB01273D0423009F749F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483EB00273D0423009F749F /* APIManager.swift */; };
+		B483EB03273D04B7009F749F /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483EB02273D04B7009F749F /* APIModel.swift */; };
+		B483EB05273D0509009F749F /* PokemonDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483EB04273D0509009F749F /* PokemonDetailsView.swift */; };
+		B483EB07273D0541009F749F /* Pokedex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483EB06273D0541009F749F /* Pokedex.swift */; };
+		B483EB09273D0555009F749F /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483EB08273D0555009F749F /* Pokemon.swift */; };
+		B483EB0B273D05B8009F749F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483EB0A273D05B8009F749F /* AppDelegate.swift */; };
+		B483EB0D273D05E0009F749F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483EB0C273D05E0009F749F /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B483EAEB273D02DC009F749F /* TelepassDigitalTestIB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelepassDigitalTestIB.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B483EAEE273D02DC009F749F /* TelepassDigitalTestIBApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepassDigitalTestIBApp.swift; sourceTree = "<group>"; };
-		B483EAF0273D02DC009F749F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B483EAF0273D02DC009F749F /* PokemonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListView.swift; sourceTree = "<group>"; };
 		B483EAF2273D02DC009F749F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B483EAF5273D02DC009F749F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B483EB00273D0423009F749F /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		B483EB02273D04B7009F749F /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
+		B483EB04273D0509009F749F /* PokemonDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsView.swift; sourceTree = "<group>"; };
+		B483EB06273D0541009F749F /* Pokedex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokedex.swift; sourceTree = "<group>"; };
+		B483EB08273D0555009F749F /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		B483EB0A273D05B8009F749F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B483EB0C273D05E0009F749F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B483EB0E273D0653009F749F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +64,15 @@
 		B483EAED273D02DC009F749F /* TelepassDigitalTestIB */ = {
 			isa = PBXGroup;
 			children = (
-				B483EAEE273D02DC009F749F /* TelepassDigitalTestIBApp.swift */,
-				B483EAF0273D02DC009F749F /* ContentView.swift */,
+				B483EB0E273D0653009F749F /* Info.plist */,
+				B483EAFF273D0406009F749F /* API */,
+				B483EAFE273D03FF009F749F /* ViewModel */,
+				B483EAFD273D03D8009F749F /* View */,
+				B483EAFC273D03D3009F749F /* Model */,
 				B483EAF2273D02DC009F749F /* Assets.xcassets */,
 				B483EAF4273D02DC009F749F /* Preview Content */,
+				B483EB0A273D05B8009F749F /* AppDelegate.swift */,
+				B483EB0C273D05E0009F749F /* SceneDelegate.swift */,
 			);
 			path = TelepassDigitalTestIB;
 			sourceTree = "<group>";
@@ -65,6 +83,40 @@
 				B483EAF5273D02DC009F749F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B483EAFC273D03D3009F749F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B483EB02273D04B7009F749F /* APIModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B483EAFD273D03D8009F749F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B483EAF0273D02DC009F749F /* PokemonListView.swift */,
+				B483EB04273D0509009F749F /* PokemonDetailsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B483EAFE273D03FF009F749F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B483EB06273D0541009F749F /* Pokedex.swift */,
+				B483EB08273D0555009F749F /* Pokemon.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B483EAFF273D0406009F749F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				B483EB00273D0423009F749F /* APIManager.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +189,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B483EAF1273D02DC009F749F /* ContentView.swift in Sources */,
-				B483EAEF273D02DC009F749F /* TelepassDigitalTestIBApp.swift in Sources */,
+				B483EB0B273D05B8009F749F /* AppDelegate.swift in Sources */,
+				B483EB09273D0555009F749F /* Pokemon.swift in Sources */,
+				B483EB03273D04B7009F749F /* APIModel.swift in Sources */,
+				B483EB01273D0423009F749F /* APIManager.swift in Sources */,
+				B483EB07273D0541009F749F /* Pokedex.swift in Sources */,
+				B483EB05273D0509009F749F /* PokemonDetailsView.swift in Sources */,
+				B483EAF1273D02DC009F749F /* PokemonListView.swift in Sources */,
+				B483EB0D273D05E0009F749F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,7 +254,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -251,7 +309,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -272,11 +330,12 @@
 				DEVELOPMENT_TEAM = 9G42NY8PHQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = TelepassDigitalTestIB/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -301,11 +360,12 @@
 				DEVELOPMENT_TEAM = 9G42NY8PHQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = TelepassDigitalTestIB/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
