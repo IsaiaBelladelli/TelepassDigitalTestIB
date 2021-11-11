@@ -24,10 +24,10 @@ For this project I used:
 I followed the MVVM architecture, dividing the project in:
 
 #### Model
-It contains the data struct of the API result.
+- It contains the data struct of the API result.
 #### APIManager
-It contains the logic for data fetching by API request. It adopts ViewModel's protocols to be trasparent to it.
+- It contains the logic for data fetching by API request. It adopts ViewModel's protocols to be trasparent to it.
 #### ViewModel
-It contains the observable objects to be observed by views.
+- It contains the observable objects to be observed by views.
 #### View
-It contains the SwiftUI views.
+- It contains the SwiftUI views.
