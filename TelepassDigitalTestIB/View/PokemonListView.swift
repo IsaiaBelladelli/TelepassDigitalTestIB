@@ -16,13 +16,12 @@ struct PokemonListView: View {
             
             List {
                 
-                ForEach(pokedex.pokemons, id: \.id) { pokemon in
+                ForEach(self.pokedex.pokemons, id: \.id) { pokemon in
                     
                     NavigationLink(destination: PokemonDetailsView(pokemon: pokemon)) {
                         
                         PokemonRowView(pokemon: pokemon)
                     }
-                    
                 }
                 
                 Text("...")
@@ -49,12 +48,12 @@ struct PokemonRowView: View {
         
         HStack {
             
-            Image(uiImage: pokemon.image ?? UIImage()) // Or an image placeholder if present
+            Image(uiImage: self.pokemon.image ?? UIImage()) // Or an image placeholder if present
             
             (Text("#\(self.pokemon.id) ")
                 .font(.callout)
             +
-            Text(self.pokemon.name)
+            Text(self.pokemon.localizedName ?? "???")
                 .font(.title))
             .lineLimit(1)
             .minimumScaleFactor(0.5)

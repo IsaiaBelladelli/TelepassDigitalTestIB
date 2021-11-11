@@ -21,7 +21,6 @@ struct APIBasePokemon: Decodable {
 
 struct APIPokemon: Decodable {
     
-    var name: String
     var id: Int
     var species: APISpecies
     let sprites: APISprite

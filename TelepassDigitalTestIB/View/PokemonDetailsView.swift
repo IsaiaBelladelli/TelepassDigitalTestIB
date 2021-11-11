@@ -9,19 +9,11 @@ import SwiftUI
 
 struct PokemonDetailsView: View {
     
-    let pokemon: Pokemon
+    @ObservedObject var pokemon: Pokemon
+    
     let imageWidth: CGFloat
-    var titleDisplayMode: NavigationBarItem.TitleDisplayMode
-    var textFontSize: CGFloat
-    
-    @State var types: [String] = []
-    
-    @State var hpLabel: String = "Hp"
-    @State var attackLabel: String = "Attack"
-    @State var defenseLabel: String = "Defense"
-    @State var specialAttackLabel: String = "Special Attack"
-    @State var specialDefenseLabel: String = "Special Defense"
-    @State var speedLabel: String = "Speed"
+    let titleDisplayMode: NavigationBarItem.TitleDisplayMode
+    let textFontSize: CGFloat
     
     init(pokemon: Pokemon) {
         self.pokemon = pokemon
@@ -46,7 +38,7 @@ struct PokemonDetailsView: View {
                 (Text("#\(self.pokemon.id) ")
                     .font(.system(size: self.textFontSize * 0.8))
                  +
-                 Text(self.pokemon.name)
+                 Text(self.pokemon.localizedName ?? "???")
                     .font(.system(size: self.textFontSize * 1.5)))
                     .bold()
             }
@@ -58,17 +50,17 @@ struct PokemonDetailsView: View {
                     ZStack {
                         
                         Circle()
-                            .fill(Color.blue.opacity(0.3))
+                            .fill(Color.blue.opacity(0.25))
                             .frame(width: self.imageWidth, height: self.imageWidth)                            
                         
-                        Image(uiImage: pokemon.image ?? UIImage())
+                        Image(uiImage: self.pokemon.image ?? UIImage())
                             .resizable()
                             .scaledToFit()
                             .frame(width: self.imageWidth, height: self.imageWidth)
                             .clipShape(Circle())
                     }
                     
-                    ForEach(self.types, id: \.self) { type in
+                    ForEach(self.pokemon.localizedTypes, id: \.self) { type in
                         
                         Text(type)
                             .font(.system(size: self.textFontSize))
@@ -87,23 +79,22 @@ struct PokemonDetailsView: View {
                     
                     Group{
                         
-                        Text("\(self.hpLabel): ").bold()
+                        Text("\(self.pokemon.localizedHpLabel): ").bold()
                         + Text("\(self.pokemon.stats[0].value)")
                         
-                        (Text("\(self.attackLabel): ").bold()
-                         + Text("\(self.pokemon.stats[1].value)"))
+                        (Text("\(self.pokemon.localizedAttackLabel): ").bold()
+                         + Text("\(self.pokemon.stats[1].value)"))                        
                         
-                        
-                        (Text("\(self.defenseLabel): ").bold()
+                        (Text("\(self.pokemon.localizedDefenseLabel): ").bold()
                          + Text("\(self.pokemon.stats[2].value)"))
                         
-                        (Text("\(self.specialAttackLabel): ").bold()
+                        (Text("\(self.pokemon.localizedSpecialAttackLabel): ").bold()
                          + Text("\(self.pokemon.stats[3].value)"))
                         
-                        (Text("\(self.specialDefenseLabel): ").bold()
+                        (Text("\(self.pokemon.localizedSpecialDefenseLabel): ").bold()
                          + Text("\(self.pokemon.stats[4].value)"))
                         
-                        (Text("\(self.speedLabel): ").bold()
+                        (Text("\(self.pokemon.localizedSpeedLabel): ").bold()
                          + Text("\(self.pokemon.stats[5].value)"))
                         
                     }
@@ -118,34 +109,7 @@ struct PokemonDetailsView: View {
                 
             }
             .onAppear {
-                
-                self.pokemon.fetchLocalizedTypes(completion: { localizedTypeName in
-                    self.types.append(localizedTypeName)
-                })
-                
-                self.pokemon.fetchLocalizedStats(statIndex: 0, completion: { localizedStatName in
-                    self.hpLabel = localizedStatName
-                })
-                
-                self.pokemon.fetchLocalizedStats(statIndex: 1, completion: { localizedStatName in
-                    self.attackLabel = localizedStatName
-                })
-                
-                self.pokemon.fetchLocalizedStats(statIndex: 2, completion: { localizedStatName in
-                    self.defenseLabel = localizedStatName
-                })
-                
-                self.pokemon.fetchLocalizedStats(statIndex: 3, completion: { localizedStatName in
-                    self.specialAttackLabel = localizedStatName
-                })
-                
-                self.pokemon.fetchLocalizedStats(statIndex: 4, completion: { localizedStatName in
-                    self.specialDefenseLabel = localizedStatName
-                })
-                
-                self.pokemon.fetchLocalizedStats(statIndex: 5, completion: { localizedStatName in
-                    self.speedLabel = localizedStatName
-                })
+                self.pokemon.fetchLocalizedString()
             }
         }
     }

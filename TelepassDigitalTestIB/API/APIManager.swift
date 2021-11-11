@@ -27,7 +27,6 @@ class APIManager: PokemonListFetcher {
                 guard error == nil, let data = data else {return}
                 
                 do {
-                    
                     let apiResult = try JSONDecoder().decode(APIResult.self, from: data)
                     
                     self.lastApiResult = apiResult
@@ -56,10 +55,9 @@ class APIManager: PokemonListFetcher {
                     let apiPokemon = try JSONDecoder().decode(APIPokemon.self, from: data)
                     
                     let pokemon = Pokemon(id: apiPokemon.id,
-                                          name: apiPokemon.name,
                                           types: Set(apiPokemon.types.map { PokemonType(name: $0.type.name, urlString: $0.type.url) }),
                                           stats: apiPokemon.stats.map { PokemonStat(name: $0.stat.name, value: $0.base_stat, urlString: $0.stat.url)},
-                                          localizedNameUrlString: apiPokemon.species.url,
+                                          nameUrlString: apiPokemon.species.url,
                                           imageUrlString: apiPokemon.sprites.front_default)
                     
                     DispatchQueue.main.async {
@@ -74,9 +72,9 @@ class APIManager: PokemonListFetcher {
     }
 }
 
-extension APIManager: localizedFieldNameFetcher {
+extension APIManager: localizedStringFetcher {
     
-    func fetchLocalizedFieldName(urlString: String, completion: @escaping (String) -> Void) {
+    func fetchLocalizedString(urlString: String, completion: @escaping (String) -> Void) {
         
         if let url = URL(string: urlString) {
             

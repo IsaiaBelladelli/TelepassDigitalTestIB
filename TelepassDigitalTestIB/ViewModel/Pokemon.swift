@@ -9,33 +9,38 @@ import Foundation
 import UIKit
 import SwiftUI
 
-protocol localizedFieldNameFetcher {
+protocol localizedStringFetcher {
     
-    func fetchLocalizedFieldName(urlString: String, completion: @escaping (String) -> Void)
-    
+    func fetchLocalizedString(urlString: String, completion: @escaping (String) -> Void)    
 }
 
 class Pokemon: ObservableObject {
     
-    let apiManager: localizedFieldNameFetcher = APIManager.shared
+    let apiManager: localizedStringFetcher = APIManager.shared
     
     let id: Int
     let types: Set<PokemonType>
     let stats: [PokemonStat]
     
     @Published var image: UIImage?
-    @Published var name: String
+    @Published var localizedName: String?
+    @Published var localizedTypes: [String] = []
+    @Published var localizedHpLabel: String = "Hp"
+    @Published var localizedAttackLabel: String = "Attack"
+    @Published var localizedDefenseLabel: String = "Defense"
+    @Published var localizedSpecialAttackLabel: String = "Special Attack"
+    @Published var localizedSpecialDefenseLabel: String = "Special Defense"
+    @Published var localizedSpeedLabel: String = "Speed"
     
-    internal init(id: Int, name: String, types: Set<PokemonType>, stats: [PokemonStat], localizedNameUrlString: String, imageUrlString: String) {
+    internal init(id: Int, types: Set<PokemonType>, stats: [PokemonStat], nameUrlString: String, imageUrlString: String) {
         self.id = id
-        self.name = name
         self.types = types
         self.stats = stats
         
         self.fetchImage(urlString: imageUrlString)
         
-        self.apiManager.fetchLocalizedFieldName(urlString: localizedNameUrlString, completion: { localizedString in
-            self.name = localizedString
+        self.apiManager.fetchLocalizedString(urlString: nameUrlString, completion: { localizedString in
+            self.localizedName = localizedString
         })       
     }
     
@@ -54,15 +59,45 @@ class Pokemon: ObservableObject {
         }
     }
     
+    func fetchLocalizedString() {
+        self.fetchLocalizedTypes(completion: { localizedTypeName in
+            self.localizedTypes.append(localizedTypeName)
+        })
+        
+        self.fetchLocalizedStats(statIndex: 0, completion: { localizedStatName in
+            self.localizedHpLabel = localizedStatName
+        })
+        
+        self.fetchLocalizedStats(statIndex: 1, completion: { localizedStatName in
+            self.localizedAttackLabel = localizedStatName
+        })
+        
+        self.fetchLocalizedStats(statIndex: 2, completion: { localizedStatName in
+            self.localizedDefenseLabel = localizedStatName
+        })
+        
+        self.fetchLocalizedStats(statIndex: 3, completion: { localizedStatName in
+            self.localizedSpecialAttackLabel = localizedStatName
+        })
+        
+        self.fetchLocalizedStats(statIndex: 4, completion: { localizedStatName in
+            self.localizedSpecialDefenseLabel = localizedStatName
+        })
+        
+        self.fetchLocalizedStats(statIndex: 5, completion: { localizedStatName in
+            self.localizedSpeedLabel = localizedStatName
+        })
+    }
+    
     func fetchLocalizedTypes(completion: @escaping (String) -> Void) {
         
         for type in types {
             
             if let urlString = type.urlString {
                 
-                self.apiManager.fetchLocalizedFieldName(urlString: urlString, completion: { localizedName in
+                self.apiManager.fetchLocalizedString(urlString: urlString, completion: { localizedString in
                     
-                    completion(localizedName)
+                    completion(localizedString)
                 })
             }
         }
@@ -72,9 +107,9 @@ class Pokemon: ObservableObject {
         
         if let urlString = self.stats[statIndex].urlString {
             
-            self.apiManager.fetchLocalizedFieldName(urlString: urlString, completion: { localizedName in
+            self.apiManager.fetchLocalizedString(urlString: urlString, completion: { localizedString in
                 
-                completion(localizedName)
+                completion(localizedString)
             })
         }
     }
