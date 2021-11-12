@@ -7,7 +7,12 @@ When a user taps on a Pokémon, the app will show a view with Pokémon’s name,
 
 <img src="images/screenshot_home.png" width="100" height="200"> ---> <img src="images/screenshot_details.png" width="100" height="200">
 
-## Technology used
+## How to run
+
+Download the project folder from GitHub, unzip it and open the project with Xcode.
+Bu sure to have an internet connection for API purpose.
+
+## Technology
 
 - **Swift 5**
 
@@ -38,6 +43,9 @@ It contains the observable objects to be observed by views.
 It contains the SwiftUI views. The main views are:
 - Pokedex View: it shows the list of pokemons in order of "id". It uses infinite scrolling.
 - Pokemon Details View: it shows pokemon's stats and types.
+
+## Test
+I implemented unit tests to test both sync and asyn logic.
 
 ## Possible improvements
 - Add search bar on top of pokemons list.
