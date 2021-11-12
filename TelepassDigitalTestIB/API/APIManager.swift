@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class APIManager: PokemonListFetcher {    
     
@@ -13,15 +14,17 @@ class APIManager: PokemonListFetcher {
     
     let baseURLString = "https://pokeapi.co/api/v2/"
     
-    var lastApiResult: APIResult
+    var lastApiResult: APIResult!
+    
+    var apiPokemons: [APIPokemon] = []
     
     init() {
         self.lastApiResult = APIResult(next: self.baseURLString + "pokemon?offset=0&limit=20", results: [])
     }
     
-    func fetchPokemonList(completion: @escaping ([Pokemon]) -> Void) {
+    func fetchPokemonList(completion: @escaping ([ObservablePokemon]) -> Void) {
         
-        if let url = URL(string: self.lastApiResult.next) {
+        if let lastApiResult = self.lastApiResult, let url = URL(string: lastApiResult.next) {
             
             URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in
                 guard error == nil, let data = data else {return}
@@ -43,7 +46,7 @@ class APIManager: PokemonListFetcher {
         }
     }
     
-    func fetchPokemon(urlString: String, completion: @escaping ([Pokemon]) -> Void) {
+    func fetchPokemon(urlString: String, completion: @escaping ([ObservablePokemon]) -> Void) {
         
         if let url = URL(string: urlString) {
             
@@ -54,11 +57,18 @@ class APIManager: PokemonListFetcher {
                     
                     let apiPokemon = try JSONDecoder().decode(APIPokemon.self, from: data)
                     
-                    let pokemon = Pokemon(id: apiPokemon.id,
-                                          types: Set(apiPokemon.types.map { PokemonType(name: $0.type.name, urlString: $0.type.url) }),
-                                          stats: apiPokemon.stats.map { PokemonStat(name: $0.stat.name, value: $0.base_stat, urlString: $0.stat.url)},
-                                          nameUrlString: apiPokemon.species.url,
-                                          imageUrlString: apiPokemon.sprites.front_default)
+                    self.apiPokemons.append(apiPokemon)
+                    
+                    let pokemon = ObservablePokemon(pokemon:
+                                                        Pokemon(id: apiPokemon.id,
+                                                                name: apiPokemon.species.name,
+                                                                types: Set(apiPokemon.types.map { $0.type.name }),
+                                                                hp: apiPokemon.stats[0].base_stat,
+                                                                attack: apiPokemon.stats[1].base_stat,
+                                                                defense: apiPokemon.stats[2].base_stat,
+                                                                specialAttack: apiPokemon.stats[3].base_stat,
+                                                                specialDefense: apiPokemon.stats[4].base_stat,
+                                                                speed: apiPokemon.stats[5].base_stat) )
                     
                     DispatchQueue.main.async {
                         completion( [pokemon] )
@@ -74,6 +84,54 @@ class APIManager: PokemonListFetcher {
 
 extension APIManager: localizedStringFetcher {
     
+    func fetchImage(pokemonID: Int, completion: @escaping (UIImage) -> Void) {
+        
+        if let pokemon = self.apiPokemons.filter({$0.id == pokemonID}).first, let url = URL(string: pokemon.sprites.front_default) {
+            
+            URLSession.shared.dataTask(with: url) { data, _, error in
+                guard error == nil, let data = data else { return }
+                
+                DispatchQueue.main.async {
+                    
+                    if let image = UIImage(data: data) {
+                        completion(image)
+                    } else {
+                        completion(UIImage())
+                    }
+                }
+                
+            }.resume()
+        }
+    }
+    
+    func fetchLocalizedName(pokemonID: Int, completion: @escaping (String) -> Void) {
+        
+        if let pokemon = self.apiPokemons.filter({$0.id == pokemonID}).first {
+            
+            self.fetchLocalizedString(urlString: pokemon.species.url, completion: completion)
+        }
+    }
+    
+    func fetchLocalizedTypes(pokemonID: Int, completion: @escaping (String) -> Void) {
+        
+        if let pokemon = self.apiPokemons.filter({$0.id == pokemonID}).first {
+            
+            for baseType in pokemon.types {
+            
+                self.fetchLocalizedString(urlString: baseType.type.url, completion: completion)
+            }
+        }
+    }
+    
+    func fetchLocalizedStats(pokemonID: Int, statID: Int, completion: @escaping (String) -> Void) {
+        
+        if let pokemon = self.apiPokemons.filter({$0.id == pokemonID}).first {
+            
+            self.fetchLocalizedString(urlString: pokemon.stats[statID].stat.url, completion: completion)
+            
+        }
+    }
+    
     func fetchLocalizedString(urlString: String, completion: @escaping (String) -> Void) {
         
         if let url = URL(string: urlString) {
@@ -81,8 +139,7 @@ extension APIManager: localizedStringFetcher {
             URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in
                 guard error == nil, let data = data else {return}
                 
-                do {
-                    
+                do {                    
                     let apiFieldDetails = try JSONDecoder().decode(APIFieldDetails.self, from: data)
                     
                     if let localizedString = apiFieldDetails.names.filter({ $0.language.name == Locale.current.languageCode}).first?.name {
@@ -91,7 +148,6 @@ extension APIManager: localizedStringFetcher {
                             completion(localizedString)
                         }                        
                     }
-                    
                 } catch let error{
                     print(error.localizedDescription)
                 }

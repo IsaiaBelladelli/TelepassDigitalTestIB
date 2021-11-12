@@ -9,19 +9,19 @@ import Foundation
 
 protocol PokemonListFetcher {
     
-    func fetchPokemonList(completion: @escaping ([Pokemon]) -> Void)    
+    func fetchPokemonList(completion: @escaping ([ObservablePokemon]) -> Void)    
 }
 
 class Pokedex: ObservableObject {
     
-    let apiManager: PokemonListFetcher = APIManager.shared
+    let pokemonListFetcher: PokemonListFetcher = APIManager.shared
     
-    @Published var pokemons: [Pokemon] = []
+    @Published var observablePokemons: [ObservablePokemon] = []
     
     func fetchPokemonList() {
-        self.apiManager.fetchPokemonList(completion: { pokemons in
-            self.pokemons += pokemons
-            self.pokemons.sort(by: { $0.id < $1.id })
+        self.pokemonListFetcher.fetchPokemonList(completion: { newObsPokemons in
+            self.observablePokemons += newObsPokemons
+            self.observablePokemons.sort(by: { $0.pokemon.id < $1.pokemon.id })
         })
     }
 }

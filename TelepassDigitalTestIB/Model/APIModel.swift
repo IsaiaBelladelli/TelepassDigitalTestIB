@@ -53,7 +53,6 @@ struct APIStat: Decodable {
 
 struct APIBaseType: Decodable {
     
-    let slot: Int
     let type: APIType
 }
 

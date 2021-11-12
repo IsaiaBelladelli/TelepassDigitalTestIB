@@ -16,17 +16,19 @@ struct PokemonListView: View {
             
             List {
                 
-                ForEach(self.pokedex.pokemons, id: \.id) { pokemon in
+                ForEach(self.pokedex.observablePokemons, id: \.pokemon.id) { pokemon in
                     
-                    NavigationLink(destination: PokemonDetailsView(pokemon: pokemon)) {
+                    NavigationLink(destination: PokemonDetailsView(observedPokemon: pokemon)) {
                         
-                        PokemonRowView(pokemon: pokemon)
+                        PokemonRowView(observedPokemon: pokemon)
                     }
                 }
                 
                 Text("...")
                     .onAppear(perform: {
                         self.pokedex.fetchPokemonList()
+                        
+                        print("sono apparso ...")
                     })
             }
             .navigationBarTitle("Pokedex")
@@ -42,18 +44,18 @@ struct ContentView_Previews: PreviewProvider {
 
 struct PokemonRowView: View {
     
-    @ObservedObject var pokemon: Pokemon
+    @ObservedObject var observedPokemon: ObservablePokemon
     
     var body: some View {
         
         HStack {
             
-            Image(uiImage: self.pokemon.image ?? UIImage()) // Or an image placeholder if present
+            Image(uiImage: self.observedPokemon.image ?? UIImage()) // Or an image placeholder if present
             
-            (Text("#\(self.pokemon.id) ")
+            (Text("#\(self.observedPokemon.pokemon.id) ")
                 .font(.callout)
             +
-            Text(self.pokemon.localizedName ?? "???")
+            Text(self.observedPokemon.localizedName ?? "???")
                 .font(.title))
             .lineLimit(1)
             .minimumScaleFactor(0.5)

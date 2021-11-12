@@ -9,22 +9,19 @@ import SwiftUI
 
 struct PokemonDetailsView: View {
     
-    @ObservedObject var pokemon: Pokemon
+    @ObservedObject var observedPokemon: ObservablePokemon
     
     let imageWidth: CGFloat
-    let titleDisplayMode: NavigationBarItem.TitleDisplayMode
     let textFontSize: CGFloat
     
-    init(pokemon: Pokemon) {
-        self.pokemon = pokemon
+    init(observedPokemon: ObservablePokemon) {
+        self.observedPokemon = observedPokemon
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             self.imageWidth = 250
-            self.titleDisplayMode = .inline
             self.textFontSize = 30
         } else {
             self.imageWidth = 130
-            self.titleDisplayMode = .large
             self.textFontSize = 20
         }
     }
@@ -35,10 +32,10 @@ struct PokemonDetailsView: View {
             
             HStack {
                 
-                (Text("#\(self.pokemon.id) ")
+                (Text("#\(self.observedPokemon.pokemon.id) ")
                     .font(.system(size: self.textFontSize * 0.8))
                  +
-                 Text(self.pokemon.localizedName ?? "???")
+                 Text(self.observedPokemon.localizedName ?? "???")
                     .font(.system(size: self.textFontSize * 1.5)))
                     .bold()
             }
@@ -53,14 +50,14 @@ struct PokemonDetailsView: View {
                             .fill(Color.blue.opacity(0.25))
                             .frame(width: self.imageWidth, height: self.imageWidth)                            
                         
-                        Image(uiImage: self.pokemon.image ?? UIImage())
+                        Image(uiImage: self.observedPokemon.image ?? UIImage())
                             .resizable()
                             .scaledToFit()
                             .frame(width: self.imageWidth, height: self.imageWidth)
                             .clipShape(Circle())
                     }
                     
-                    ForEach(self.pokemon.localizedTypes, id: \.self) { type in
+                    ForEach(self.observedPokemon.localizedTypes, id: \.self) { type in
                         
                         Text(type)
                             .font(.system(size: self.textFontSize))
@@ -79,23 +76,23 @@ struct PokemonDetailsView: View {
                     
                     Group{
                         
-                        Text("\(self.pokemon.localizedHpLabel): ").bold()
-                        + Text("\(self.pokemon.stats[0].value)")
+                        Text("\(self.observedPokemon.localizedHpLabel): ").bold()
+                        + Text("\(self.observedPokemon.pokemon.hp)")
                         
-                        (Text("\(self.pokemon.localizedAttackLabel): ").bold()
-                         + Text("\(self.pokemon.stats[1].value)"))                        
+                        (Text("\(self.observedPokemon.localizedAttackLabel): ").bold()
+                         + Text("\(self.observedPokemon.pokemon.attack)"))
                         
-                        (Text("\(self.pokemon.localizedDefenseLabel): ").bold()
-                         + Text("\(self.pokemon.stats[2].value)"))
+                        (Text("\(self.observedPokemon.localizedDefenseLabel): ").bold()
+                         + Text("\(self.observedPokemon.pokemon.defense)"))
                         
-                        (Text("\(self.pokemon.localizedSpecialAttackLabel): ").bold()
-                         + Text("\(self.pokemon.stats[3].value)"))
+                        (Text("\(self.observedPokemon.localizedSpecialAttackLabel): ").bold()
+                         + Text("\(self.observedPokemon.pokemon.specialAttack)"))
                         
-                        (Text("\(self.pokemon.localizedSpecialDefenseLabel): ").bold()
-                         + Text("\(self.pokemon.stats[4].value)"))
+                        (Text("\(self.observedPokemon.localizedSpecialDefenseLabel): ").bold()
+                         + Text("\(self.observedPokemon.pokemon.specialDefense)"))
                         
-                        (Text("\(self.pokemon.localizedSpeedLabel): ").bold()
-                         + Text("\(self.pokemon.stats[5].value)"))
+                        (Text("\(self.observedPokemon.localizedSpeedLabel): ").bold()
+                         + Text("\(self.observedPokemon.pokemon.speed)"))
                         
                     }
                     .padding(.top, 10)
@@ -109,7 +106,7 @@ struct PokemonDetailsView: View {
                 
             }
             .onAppear {
-                self.pokemon.fetchLocalizedString()
+                self.observedPokemon.fetchLocalizedString()
             }
         }
     }
