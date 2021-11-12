@@ -37,17 +37,20 @@ It contains the logic for data fetching by API request. It adopts ViewModel's pr
 I used URLSession for the API request. I could have used the pod Moya.
 
 ### ViewModel
-It contains the observable objects to be observed by views.
+It contains the observable objects to be observed by views. The main objects are:
+- Pokedex: it contains the list of pokemon.
+- ObservablePokemon: it contains the pokemon struct and published localized string.
 
 ### View
 It contains the SwiftUI views. The main views are:
-- Pokedex View: it shows the list of pokemons in order of "id". It uses infinite scrolling.
+- Pokemon List View: it shows the list of pokemons in order of "id". It uses infinite scrolling.
 - Pokemon Details View: it shows pokemon's stats and types.
+Because of many properties are set asynchronously, for view state I used "@ObservedObject pattern" 
 
 ## Test
-I implemented unit tests to test both sync and asyn logic.
+I implemented unit tests for async logic.
 
 ## Possible improvements
-- Add search bar on top of pokemons list.
-- Add the possibility to show the pokemons list ordered by name, id, etc.
+- Add search feature for pokemons list.
+- Add the possibility to show the pokemons list ordered by name, id, type, etc.
 
