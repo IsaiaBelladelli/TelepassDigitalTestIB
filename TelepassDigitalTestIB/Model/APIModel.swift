@@ -62,7 +62,7 @@ struct APIType: Decodable {
     let url: String
 }
 
-// Model for both pokemon's stats and types localized name
+// Model for localized strings such name, types, stats's name.
 struct APIFieldDetails: Decodable {
     
     let names: [APIFieldName]

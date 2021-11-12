@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-protocol localizedStringFetcher {
+protocol LocalizedStringFetcher {
     
     func fetchLocalizedName(pokemonID: Int, completion: @escaping (String) -> Void)
     
@@ -22,7 +22,7 @@ protocol localizedStringFetcher {
 
 class ObservablePokemon: ObservableObject {
     
-    let localizedStringFetcher: localizedStringFetcher = APIManager.shared
+    let localizedStringFetcher: LocalizedStringFetcher
     
     let pokemon: Pokemon
     
@@ -36,8 +36,9 @@ class ObservablePokemon: ObservableObject {
     @Published var localizedSpecialDefenseLabel: String = "Special Defense"
     @Published var localizedSpeedLabel: String = "Speed"
     
-    internal init(pokemon: Pokemon) {
+    internal init(pokemon: Pokemon, localizedStringFetcher: LocalizedStringFetcher) {
         self.pokemon = pokemon
+        self.localizedStringFetcher = localizedStringFetcher
         
         self.localizedStringFetcher.fetchImage(pokemonID: self.pokemon.id, completion: { image in
             self.image = image

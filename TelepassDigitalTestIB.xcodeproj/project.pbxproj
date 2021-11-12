@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B410FA6E273EACA90005E372 /* AsyncTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B410FA6D273EACA90005E372 /* AsyncTest.swift */; };
 		B483EAF1273D02DC009F749F /* PokemonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483EAF0273D02DC009F749F /* PokemonListView.swift */; };
 		B483EAF3273D02DC009F749F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B483EAF2273D02DC009F749F /* Assets.xcassets */; };
 		B483EAF6273D02DC009F749F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B483EAF5273D02DC009F749F /* Preview Assets.xcassets */; };
@@ -20,7 +21,19 @@
 		B4A2A9C5273E64CB000AEBD2 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A9C4273E64CB000AEBD2 /* Pokemon.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B410FA6F273EACA90005E372 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B483EAE3273D02DC009F749F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B483EAEA273D02DC009F749F;
+			remoteInfo = TelepassDigitalTestIB;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		B410FA6B273EACA90005E372 /* AsyncTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsyncTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B410FA6D273EACA90005E372 /* AsyncTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncTest.swift; sourceTree = "<group>"; };
 		B483EAEB273D02DC009F749F /* TelepassDigitalTestIB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelepassDigitalTestIB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B483EAF0273D02DC009F749F /* PokemonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListView.swift; sourceTree = "<group>"; };
 		B483EAF2273D02DC009F749F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,6 +50,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B410FA68273EACA90005E372 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B483EAE8273D02DC009F749F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -47,10 +67,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B410FA6C273EACA90005E372 /* AsyncTest */ = {
+			isa = PBXGroup;
+			children = (
+				B410FA6D273EACA90005E372 /* AsyncTest.swift */,
+			);
+			path = AsyncTest;
+			sourceTree = "<group>";
+		};
 		B483EAE2273D02DC009F749F = {
 			isa = PBXGroup;
 			children = (
 				B483EAED273D02DC009F749F /* TelepassDigitalTestIB */,
+				B410FA6C273EACA90005E372 /* AsyncTest */,
 				B483EAEC273D02DC009F749F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				B483EAEB273D02DC009F749F /* TelepassDigitalTestIB.app */,
+				B410FA6B273EACA90005E372 /* AsyncTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,6 +155,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B410FA6A273EACA90005E372 /* AsyncTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B410FA73273EACA90005E372 /* Build configuration list for PBXNativeTarget "AsyncTest" */;
+			buildPhases = (
+				B410FA67273EACA90005E372 /* Sources */,
+				B410FA68273EACA90005E372 /* Frameworks */,
+				B410FA69273EACA90005E372 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B410FA70273EACA90005E372 /* PBXTargetDependency */,
+			);
+			name = AsyncTest;
+			productName = AsyncTest;
+			productReference = B410FA6B273EACA90005E372 /* AsyncTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B483EAEA273D02DC009F749F /* TelepassDigitalTestIB */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B483EAF9273D02DC009F749F /* Build configuration list for PBXNativeTarget "TelepassDigitalTestIB" */;
@@ -152,6 +200,10 @@
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					B410FA6A273EACA90005E372 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = B483EAEA273D02DC009F749F;
+					};
 					B483EAEA273D02DC009F749F = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -171,11 +223,19 @@
 			projectRoot = "";
 			targets = (
 				B483EAEA273D02DC009F749F /* TelepassDigitalTestIB */,
+				B410FA6A273EACA90005E372 /* AsyncTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B410FA69273EACA90005E372 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B483EAE9273D02DC009F749F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -188,6 +248,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B410FA67273EACA90005E372 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B410FA6E273EACA90005E372 /* AsyncTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B483EAE7273D02DC009F749F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -206,7 +274,63 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B410FA70273EACA90005E372 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B483EAEA273D02DC009F749F /* TelepassDigitalTestIB */;
+			targetProxy = B410FA6F273EACA90005E372 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		B410FA71273EACA90005E372 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9G42NY8PHQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.isaiabelladelli.AsyncTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TelepassDigitalTestIB.app/TelepassDigitalTestIB";
+			};
+			name = Debug;
+		};
+		B410FA72273EACA90005E372 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9G42NY8PHQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.isaiabelladelli.AsyncTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TelepassDigitalTestIB.app/TelepassDigitalTestIB";
+			};
+			name = Release;
+		};
 		B483EAF7273D02DC009F749F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -386,6 +510,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B410FA73273EACA90005E372 /* Build configuration list for PBXNativeTarget "AsyncTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B410FA71273EACA90005E372 /* Debug */,
+				B410FA72273EACA90005E372 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B483EAE6273D02DC009F749F /* Build configuration list for PBXProject "TelepassDigitalTestIB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

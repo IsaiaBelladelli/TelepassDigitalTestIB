@@ -14,7 +14,7 @@ protocol PokemonListFetcher {
 
 class Pokedex: ObservableObject {
     
-    let pokemonListFetcher: PokemonListFetcher = APIManager.shared
+    let pokemonListFetcher: PokemonListFetcher = APIManager()
     
     @Published var observablePokemons: [ObservablePokemon] = []
     

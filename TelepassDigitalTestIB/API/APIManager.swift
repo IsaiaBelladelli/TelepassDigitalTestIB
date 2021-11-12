@@ -8,13 +8,11 @@
 import Foundation
 import UIKit
 
-class APIManager: PokemonListFetcher {    
-    
-    static let shared = APIManager()
+class APIManager: PokemonListFetcher {
     
     let baseURLString = "https://pokeapi.co/api/v2/"
     
-    var lastApiResult: APIResult!
+    var lastApiResult: APIResult
     
     var apiPokemons: [APIPokemon] = []
     
@@ -24,7 +22,7 @@ class APIManager: PokemonListFetcher {
     
     func fetchPokemonList(completion: @escaping ([ObservablePokemon]) -> Void) {
         
-        if let lastApiResult = self.lastApiResult, let url = URL(string: lastApiResult.next) {
+        if let url = URL(string: self.lastApiResult.next) {
             
             URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in
                 guard error == nil, let data = data else {return}
@@ -68,7 +66,8 @@ class APIManager: PokemonListFetcher {
                                                                 defense: apiPokemon.stats[2].base_stat,
                                                                 specialAttack: apiPokemon.stats[3].base_stat,
                                                                 specialDefense: apiPokemon.stats[4].base_stat,
-                                                                speed: apiPokemon.stats[5].base_stat) )
+                                                                speed: apiPokemon.stats[5].base_stat),
+                                                    localizedStringFetcher: self)
                     
                     DispatchQueue.main.async {
                         completion( [pokemon] )
@@ -82,7 +81,7 @@ class APIManager: PokemonListFetcher {
     }
 }
 
-extension APIManager: localizedStringFetcher {
+extension APIManager: LocalizedStringFetcher {
     
     func fetchImage(pokemonID: Int, completion: @escaping (UIImage) -> Void) {
         
