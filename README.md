@@ -22,7 +22,7 @@ Moreover, I made this choice because the recruiter told me that in Telepass you 
 
 - **Xcode 13**
 
-- **No external libraries or pods**: Althoug I have found convenient using CocoaPods in other projects, I followed the project's specifications using as few external libraries as possible.
+- **No external libraries**: Althoug I have found convenient using CocoaPods in other projects, I followed the project's specifications using as few external libraries as possible.
 
 - API suggested by the project's specs: [API link](https://pokeapi.co/)
 
