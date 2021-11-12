@@ -11,7 +11,9 @@ When a user taps on a Pokémon, the app will show a view with Pokémon’s name,
 
 - **Swift 5**
 
-- **SwiftUI**: Although the specifications required iOS dep target 11, I preferred to set it to iOS 13 so that I could use SwiftUI, a young cross-platform framework for building UI that soon or later will replace UIKit.
+- **SwiftUI**: Although the specifications required iOS dep target 11, I preferred to set it to iOS 13 so that I could use SwiftUI, a young cross-platform framework for building UI that soon or later will replace UIKit. 
+But, to not overdo it, I decide to use the "oldest" target available for SwiftUI, even if it is recommended to use iOS 14+.
+Moreover, I made this choice because the recruiter told me that in Telepass you are going to use SwiftUI for future projects.
 
 - **Xcode 13**
 
