@@ -36,3 +36,8 @@ It contains the observable objects to be observed by views.
 It contains the SwiftUI views. The main views are:
 - Pokedex View: it shows the list of pokemons in order of "id". It uses infinite scrolling.
 - Pokemon Details View: it shows pokemon's stats and types.
+
+## Possible improvements
+- Add search bar on top of pokemons list.
+- Add the possibility to show the pokemons list ordered by name, id, etc.
+
