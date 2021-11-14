@@ -10,7 +10,7 @@ When a user taps on a Pokémon, the app will show a view with Pokémon’s name,
 ## How to run
 
 Download the project folder from GitHub, unzip it and open the project with Xcode.
-Bu sure to have an internet connection for API purpose.
+Be sure to have an internet connection for API purpose.
 
 ## Technology
 
@@ -45,12 +45,12 @@ It contains the observable objects to be observed by views. The main objects are
 It contains the SwiftUI views. The main views are:
 - Pokemon List View: it shows the list of pokemons in order of "id". It uses infinite scrolling.
 - Pokemon Details View: it shows pokemon's stats and types.
-Because of many properties are set asynchronously, for view state I used "@ObservedObject pattern" 
+Because of many properties are set asynchronously, for view state I used "@ObservedObject pattern". 
 
 ## Test
 I implemented unit tests for async logic.
 
 ## Possible improvements
-- Add search feature for pokemons list.
+- Add search bar for pokemons list.
 - Add the possibility to show the pokemons list ordered by name, id, type, etc.
 
