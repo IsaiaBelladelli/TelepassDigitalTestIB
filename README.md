@@ -47,10 +47,17 @@ It contains the SwiftUI views. The main views are:
 - Pokemon Details View: it shows pokemon's stats and types.
 Because of many properties are set asynchronously, for view state I used "@ObservedObject pattern". 
 
-## Test
+## Bonus tasks
+
+### Test
 I implemented unit tests for async logic.
+
+### Localization
+I implemented "string localization", for example for pokemon's name and types.
+
+### Use one external library at most
+In order to make the code as maintainable as possible, I didn't use any external library.
 
 ## Possible improvements
 - Add search bar for pokemons list.
 - Add the possibility to show the pokemons list ordered by name, id, type, etc.
-
