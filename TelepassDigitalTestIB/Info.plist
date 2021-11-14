@@ -21,12 +21,12 @@
 	</dict>
 	<key>UILaunchScreen</key>
 	<dict>
-		<key>UIImageRespectsSafeAreaInsets</key>
-		<true/>
-		<key>UIImageName</key>
-		<string>pikachu</string>
 		<key>UIColorName</key>
 		<string>launchScreenBackgroundColor</string>
+		<key>UIImageName</key>
+		<string>pikachu</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<true/>
 		<key>UILaunchScreen</key>
 		<dict/>
 	</dict>
